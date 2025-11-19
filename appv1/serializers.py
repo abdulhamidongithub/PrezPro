@@ -1,7 +1,7 @@
 from rest_framework.serializers import Serializer, ModelSerializer
 from rest_framework.exceptions import APIException
 
-from .models import CustomUser, Fan, Presentation, Darslik
+from .models import CustomUser, Fan, Presentation, Darslik, IshReja
 
 class UserSerializer(ModelSerializer):
     class Meta:
@@ -21,4 +21,9 @@ class PresentationSerializer(ModelSerializer):
 class DarslikSerializer(ModelSerializer):
     class Meta:
         model = Darslik
+        fields = '__all__'
+
+class IshRejaSerializer(ModelSerializer):
+    class Meta:
+        model = IshReja
         fields = '__all__'
