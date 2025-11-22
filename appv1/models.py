@@ -21,12 +21,24 @@ class Fan(models.Model):
     def __str__(self):
         return f"{self.name}, {self.sinf}-sinf"
 
+class Darslik(models.Model):
+    name = models.CharField(max_length=300, blank=True, null=True)
+    file = models.FileField(upload_to='darsliklar')
+    fan = models.ForeignKey(Fan, on_delete=models.SET_NULL, null=True)
+    yil = models.PositiveSmallIntegerField(blank=True, null=True)
+    added_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
+    added_date = models.DateTimeField(auto_now_add=True)
+    changed_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name}, {self.added_date}"
+
 class Presentation(models.Model):
     name = models.CharField(max_length=300, blank=True, null=True)
     file = models.FileField(upload_to='presentations')
     price = models.IntegerField(default=0)
     chorak = models.PositiveSmallIntegerField(default=1)
-    fan = models.ForeignKey(Fan, on_delete=models.SET_NULL, null=True)
+    darslik = models.ForeignKey(Darslik, on_delete=models.SET_NULL, null=True)
     added_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
     added_date = models.DateTimeField(auto_now_add=True)
     changed_date = models.DateTimeField(auto_now=True)
@@ -35,16 +47,6 @@ class Presentation(models.Model):
     def __str__(self):
         return f"{self.name}, {self.added_date}"
 
-class Darslik(models.Model):
-    name = models.CharField(max_length=300, blank=True, null=True)
-    file = models.FileField(upload_to='darsliklar')
-    fan = models.ForeignKey(Fan, on_delete=models.SET_NULL, null=True)
-    added_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
-    added_date = models.DateTimeField(auto_now_add=True)
-    changed_date = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.name}, {self.added_date}"
 
 class IshReja(models.Model):
     file = models.FileField(upload_to='ish_rejalar')

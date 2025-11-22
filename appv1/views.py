@@ -69,13 +69,13 @@ class PresentationsAPIView(APIView):
         filters = {"price": 0}
         fan = request.query_params.get("fan", "").strip()
         if fan:
-            filters["fan__name__iexact"] = fan
+            filters["darslik__fan__name__iexact"] = fan
         guruh = request.query_params.get("guruh", "").strip()
         if guruh and guruh in ["o'zbek", "rus"]:
-            filters["fan__guruh__iexact"] = guruh
+            filters["darslik__fan__guruh__iexact"] = guruh
         sinf = request.query_params.get("sinf")
         if sinf and sinf.isdigit():
-            filters["fan__sinf"] = int(sinf)
+            filters["darslik__fan__sinf"] = int(sinf)
         chorak = request.query_params.get("chorak")
         if chorak and chorak.isdigit():
             filters["chorak"] = int(chorak)

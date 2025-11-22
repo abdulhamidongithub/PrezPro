@@ -18,14 +18,14 @@ class FanAdmin(admin.ModelAdmin):
     list_per_page = 30
 
 class PresentationAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "price", "fan__name", "fan__sinf", "fan__guruh"]
+    list_display = ["id", "name", "price", "darslik__name", "darslik__fan__name", "darslik__fan__sinf", "darslik__fan__guruh"]
     list_display_links = ["id", "name"]
-    list_filter = ["price", "fan__name", "fan__sinf", "fan__guruh", "chorak"]
-    search_fields = ["name", "fan__name", "fan__sinf"]
+    list_filter = ["price", "darslik__fan__name", "darslik__fan__sinf", "darslik__fan__guruh", "chorak"]
+    search_fields = ["name", "darslik__name", "darslik__fan__name", "darslik__fan__sinf"]
     list_per_page = 30
 
 class DarslikAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "fan__name", "fan__sinf", "fan__guruh"]
+    list_display = ["id", "name", "fan__name", "fan__sinf", "fan__guruh", "yil"]
     list_display_links = ["id", "name"]
     list_filter = ["fan__name", "fan__sinf", "fan__guruh"]
     search_fields = ["name", "fan__name", "fan__sinf"]
